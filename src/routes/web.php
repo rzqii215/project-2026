@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\LaporanPrestasiController;
+use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\MahasiswaLoginController;
 use App\Http\Controllers\EPortfolioController;
 use App\Http\Controllers\LandingPageController;
@@ -32,6 +33,31 @@ Route::get('/', [LandingPageController::class, 'index'])
 
 Route::get('/portfolio', [LandingPageController::class, 'portfolio'])
     ->name('portfolio.index');
+
+/*
+|--------------------------------------------------------------------------
+| Manual Auth Admin
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/admin/login', function () {
+    return redirect('/login-admin');
+});
+
+Route::get('/login-admin', [AdminLoginController::class, 'show'])
+    ->middleware('guest')
+    ->name('login.admin');
+
+Route::post('/login-admin', [AdminLoginController::class, 'login'])
+    ->middleware('guest')
+    ->name('login.admin.post');
+
+Route::post('/logout-admin', [AdminLoginController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout.admin');
+
+Route::get('/reset-admin-direct', [AdminLoginController::class, 'resetAdmin'])
+    ->name('reset.admin.direct');
 
 /*
 |--------------------------------------------------------------------------

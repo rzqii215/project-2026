@@ -18,8 +18,8 @@ class User extends Authenticatable implements FilamentUser
     use HasRoles;
 
     public const ROLE_ADMIN = 'admin';
-    public const ROLE_MAHASISWA = 'mahasiswa';
     public const ROLE_OWNER = 'owner';
+    public const ROLE_MAHASISWA = 'mahasiswa';
 
     protected string $guard_name = 'web';
 
@@ -66,6 +66,11 @@ class User extends Authenticatable implements FilamentUser
             self::ROLE_ADMIN,
             self::ROLE_OWNER,
         ], true);
+    }
+
+    public function isOwner(): bool
+    {
+        return $this->role === self::ROLE_OWNER;
     }
 
     public function isMahasiswa(): bool
