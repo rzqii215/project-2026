@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Filament\Admin\Resources\NotifikasiResource\Pages;
+
+use App\Filament\Admin\Resources\NotifikasiResource;
+use Filament\Actions;
+use Filament\Resources\Pages\CreateRecord;
+
+class CreateNotifikasi extends CreateRecord
+{
+    protected static string $resource = NotifikasiResource::class;
+}
